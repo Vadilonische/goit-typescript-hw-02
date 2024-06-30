@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSubmit }) {
-  const [topic, setTopic] = useState("");
+type SearchBarProps = { onSubmit: (topic: string) => void };
 
-  const handleSubmit = (evt) => {
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const [topic, setTopic] = useState<string>("");
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    const form = evt.target;
 
     if (topic.trim() === "") {
       toast.error("Please enter a search term.");
@@ -15,10 +16,10 @@ export default function SearchBar({ onSubmit }) {
     }
 
     onSubmit(topic);
-    form.reset();
+    setTopic("");
   };
 
-  const handleChange = (evt) => {
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     setTopic(evt.target.value);
   };
 
@@ -39,6 +40,8 @@ export default function SearchBar({ onSubmit }) {
           Search
         </button>
       </form>
+      <Toaster position="top-right" />
     </header>
   );
-}
+};
+export default SearchBar;

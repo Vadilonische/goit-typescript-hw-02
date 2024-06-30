@@ -1,7 +1,21 @@
+import React from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery({ images, onImageClick }) {
+interface IImage {
+  id: string;
+  urls: {
+    small: string;
+  };
+  slug: string;
+}
+
+interface IImageGallery {
+  images: IImage[];
+  onImageClick: (id: string) => void;
+}
+
+const ImageGallery: React.FC<IImageGallery> = ({ images, onImageClick }) => {
   if (images.length === 0) {
     return null;
   }
@@ -19,4 +33,5 @@ export default function ImageGallery({ images, onImageClick }) {
       ))}
     </ul>
   );
-}
+};
+export default ImageGallery;

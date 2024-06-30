@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 
-export default function ErrorMessage() {
+const ErrorMessage: React.FC = () => {
   useEffect(() => {
     toast.error("Oops! There was an error! Try reloading!");
   }, []);
   return null;
-}
+};
+export default ErrorMessage;

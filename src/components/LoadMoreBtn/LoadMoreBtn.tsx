@@ -1,5 +1,12 @@
+import React from "react";
 import css from "./LoadMoreBtn.module.css";
-export default function LoadMoreBtn({ onLoadMore, loading }) {
+
+type LoadMore = {
+  onLoadMore: () => void;
+  loading: boolean;
+};
+
+const LoadMoreBtn: React.FC<LoadMore> = ({ onLoadMore, loading }) => {
   return (
     <div className={css.loadMoreBtn}>
       <button onClick={onLoadMore} disabled={loading}>
@@ -7,4 +14,5 @@ export default function LoadMoreBtn({ onLoadMore, loading }) {
       </button>
     </div>
   );
-}
+};
+export default LoadMoreBtn;

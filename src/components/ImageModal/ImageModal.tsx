@@ -1,3 +1,4 @@
+import React from "react";
 import css from "./ImageModal.module.css";
 import Modal from "react-modal";
 
@@ -14,7 +15,18 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function ImageModal({ isOpen, onCloseModal, imgUrl }) {
+interface IImageModal {
+  isOpen: boolean;
+  onCloseModal: () => void;
+  imgUrl: string | null;
+}
+
+const ImageModal: React.FC<IImageModal> = ({
+  isOpen,
+  onCloseModal,
+  imgUrl,
+}) => {
+  if (!imgUrl) return null;
   return (
     <Modal
       isOpen={isOpen}
@@ -28,4 +40,6 @@ export default function ImageModal({ isOpen, onCloseModal, imgUrl }) {
       </button>
     </Modal>
   );
-}
+};
+
+export default ImageModal;
